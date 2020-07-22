@@ -1,0 +1,30 @@
+{
+  "name": "db-sharding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon dist/index.js",
+    "start": "npm run build && node dist",
+    "build": "npm run clean && tsc --outDir dist/",
+    "clean": "rm -r -f dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/hashring": "^3.2.1",
+    "@types/pg": "^7.14.4",
+    "nodemon": "^2.0.4",
+    "ts-node-dev": "^1.0.0-pre.52"
+  },
+  "dependencies": {
+    "consistent-hash": "^1.0.2",
+    "express": "^4.17.1",
+    "hashring": "^3.2.0",
+    "pg": "^8.3.0",
+    "typescript": "^3.9.7"
+  }
+}
