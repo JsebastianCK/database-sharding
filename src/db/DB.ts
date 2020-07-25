@@ -14,9 +14,6 @@ export class DB {
 
     static password: string = 'admin';
 
-    /**
-     * 
-     */
     static clients: Array<iClient> = [
         {
             id: 5432,
@@ -50,11 +47,6 @@ export class DB {
         }
     ];
 
-    private static initUserTable: string = `CREATE TABLE person
-    (
-        ID INT NOT NULL primary key,
-        name text
-    )`;
 
     /**
      * Return all available clients
@@ -66,7 +58,6 @@ export class DB {
 
     /**
      * Returns a specific client
-     * @param id Client id
      */   
     static getClient(id: number): Client
     {
@@ -74,14 +65,12 @@ export class DB {
         return client;
     }
 
-    static async connectDatabases()
+    static async connectDatabases(): Promise<void>
     {
-        await this.clients.map(async client => {
-            await client.client.connect()
-            console.log(`Base de datos ${client.id} conectada`);
-            await client.client.query(this.initUserTable)
-                .then(() => console.log(`Tabla de persona creada en ${client.id}`))
-                .catch((e) => console.log(`Tabla de persona ya existia en ${client.id}`));
+        this.clients.map(client => {
+            client.client.connect()
+                .then(() => console.log('Database connected'))
+                .catch(e => console.log(e));
         })
     }
 }
